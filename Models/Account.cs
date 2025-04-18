@@ -3,5 +3,10 @@ namespace BankManager.Models {
 
         public Person Owner { get; } = owner;
         public string AccountNumber { get; } = accountNumber;
+        public double Amount { get; set; } = 0.00;
+
+        public void DepositMoney(double amount) {
+            Amount += amount;
+        }
     }
 }
