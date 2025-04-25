@@ -156,7 +156,7 @@ namespace BankManager
                         if (account == null) {
                             break;
                         }
-                        SelectAccountFlow(account);
+                        SelectAccountFlow(account, bank);
                         break;
                     case "2":
                         CreateAccount(bank);
@@ -186,11 +186,11 @@ namespace BankManager
             return birthdateParsed;
         }
 
-        private static Account? SelectAccount(Bank bank) {
+        private static Account? SelectAccount(Bank bank, string message = "the document number") {
             Account? account = null;
 
             while (account == null) {
-                string documentNumber = GetRequiredInput("the document number", true);
+                string documentNumber = GetRequiredInput(message, true);
                 if (documentNumber.Equals("exit", StringComparison.CurrentCultureIgnoreCase)) {
                     return null;
                 }
@@ -205,7 +205,7 @@ namespace BankManager
             return account;
         }
 
-        private static void SelectAccountFlow (Account account) {
+        private static void SelectAccountFlow (Account account, Bank bank) {
             string? choice;
 
             do {
@@ -220,7 +220,7 @@ namespace BankManager
                         WithdrawMoney(account);
                         break;
                     case "3":
-                        Console.WriteLine("Not implemented.");
+                        TransferMoney(account, bank);
                         break;
                     case "4":
                         Console.WriteLine($"\nYour current balance is ${account.Amount}");
@@ -310,6 +310,41 @@ namespace BankManager
 
             bank.CreateAccount(owner);
             Console.WriteLine("Account created successfully!");
+        }
+
+        private static void TransferMoney(Account account, Bank bank) {
+            string inputDescription = "the document number of the account you want to transfer the money to";
+            Account? destinyAccount = SelectAccount(bank, inputDescription);
+
+            if (destinyAccount == null) {
+                return;
+            }
+
+            double amount;
+            while (true) {
+                string amountString = GetRequiredInput("the amount you want to make the transfer", true);
+
+                if (amountString.Equals("exit", StringComparison.CurrentCultureIgnoreCase)) {
+                    return;
+                }
+
+                if (double.TryParse(amountString, out double result)) {
+                    amount = result;
+                    if (amount > 0) {
+                        break;
+                    }
+                }
+
+                Console.WriteLine("The amount to be transferred must be greater than 0.");
+            }
+
+            try {
+                account.MakeTransfer(amount, destinyAccount);
+                Console.WriteLine("Transfer created successfully!");
+            } catch (Exception ex) {
+                Console.WriteLine(ex.Message);
+            }
+
         }
     }
 }
