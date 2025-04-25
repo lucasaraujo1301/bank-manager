@@ -7,8 +7,8 @@ namespace BankManager.Models {
             if (Accounts.Count == 0) {
                 return 1;
             }
-            int lastAccountNumber = Accounts.Last().AccountNumber;
-            return lastAccountNumber++;
+            int lastAccountNumber = Accounts.Max(a => a.AccountNumber);
+            return ++lastAccountNumber;
         }
 
         public bool AlreadyHasAccount(string documentNumber) {
