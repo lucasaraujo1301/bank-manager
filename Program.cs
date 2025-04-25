@@ -223,7 +223,7 @@ namespace BankManager
                         TransferMoney(account, bank);
                         break;
                     case "4":
-                        Console.WriteLine($"\nAccount number: {account.AccountNumber}");
+                        Console.WriteLine($"\nAccount number: {account.AccountNumberToDisplay()}");
                         Console.WriteLine($"First Name: {account.Owner.FirstName}");
                         Console.WriteLine($"Document number: {account.Owner.DocumentNumber}");
                         Console.WriteLine($"Balance: ${account.Amount}");

@@ -1,8 +1,8 @@
 namespace BankManager.Models {
-    public class Account (Person owner, string accountNumber) {
+    public class Account (Person owner, int accountNumber) {
 
         public Person Owner { get; } = owner;
-        public string AccountNumber { get; } = accountNumber;
+        public int AccountNumber { get; } = accountNumber;
         public double Amount { get; set; } = 0.00;
 
         private bool HasEnoughMoney(double amount) {
@@ -26,6 +26,10 @@ namespace BankManager.Models {
             }
             WithdrawMoney(amount);
             destinyAccount.DepositMoney(amount);
+        }
+
+        public string AccountNumberToDisplay() {
+            return AccountNumber.ToString("D7");
         }
     }
 }

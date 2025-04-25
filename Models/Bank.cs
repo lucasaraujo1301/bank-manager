@@ -3,18 +3,12 @@ namespace BankManager.Models {
         private List<Account> Accounts { get; set; } = [];
         public string Name { get; } = name;
 
-        private string GenerateAccountNumber() {
+        private int GenerateAccountNumber() {
             if (Accounts.Count == 0) {
-                return "0000001";
+                return 1;
             }
-
-            // Getting the last account number generated, and parsing to int to increment and returning as string.
-            string lastAccountNumber = Accounts.Last().AccountNumber;
-            int lastAccountNumberIntParsed = int.Parse(lastAccountNumber);
-
-            lastAccountNumberIntParsed++;
-
-            return lastAccountNumberIntParsed.ToString("D7");
+            int lastAccountNumber = Accounts.Last().AccountNumber;
+            return lastAccountNumber++;
         }
 
         public bool AlreadyHasAccount(string documentNumber) {
@@ -28,7 +22,7 @@ namespace BankManager.Models {
         }
 
         public void CreateAccount(Person owner) {
-            string accountNumber = GenerateAccountNumber();
+            int accountNumber = GenerateAccountNumber();
 
             Account account = new(owner, accountNumber);
 
