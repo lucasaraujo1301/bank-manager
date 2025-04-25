@@ -31,5 +31,9 @@ namespace BankManager.Models {
         public string AccountNumberToDisplay() {
             return AccountNumber.ToString("D7");
         }
+
+        public string Balance() {
+            return Amount.ToString("0.00");
+        }
     }
 }

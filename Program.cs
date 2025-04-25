@@ -226,7 +226,7 @@ namespace BankManager
                         Console.WriteLine($"\nAccount number: {account.AccountNumberToDisplay()}");
                         Console.WriteLine($"First Name: {account.Owner.FirstName}");
                         Console.WriteLine($"Document number: {account.Owner.DocumentNumber}");
-                        Console.WriteLine($"Balance: ${account.Amount}");
+                        Console.WriteLine($"Balance: ${account.Balance()}");
                         break;
                     case "5":
                         break;
