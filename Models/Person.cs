@@ -4,7 +4,5 @@ namespace BankManager.Models {
         public string LastName { get; } = lastName;
         public string DocumentNumber { get; } = documentNumber;
         public DateOnly Birthdate { get; } = birthdate;
-
-        public List<Address> Addresses { get; set; } = [];
     }
 }
