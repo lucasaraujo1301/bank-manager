@@ -83,7 +83,7 @@ namespace BankManager
             Console.WriteLine("1. Deposit Money");
             Console.WriteLine("2. Withdraw Money");
             Console.WriteLine("3. Make an Transfer");
-            Console.WriteLine("4. Show current balance");
+            Console.WriteLine("4. Show account info.");
             Console.WriteLine("5. Main menu\n");
         }
 
@@ -223,7 +223,10 @@ namespace BankManager
                         TransferMoney(account, bank);
                         break;
                     case "4":
-                        Console.WriteLine($"\nYour current balance is ${account.Amount}");
+                        Console.WriteLine($"\nAccount number: {account.AccountNumber}");
+                        Console.WriteLine($"First Name: {account.Owner.FirstName}");
+                        Console.WriteLine($"Document number: {account.Owner.DocumentNumber}");
+                        Console.WriteLine($"Balance: ${account.Amount}");
                         break;
                     case "5":
                         break;

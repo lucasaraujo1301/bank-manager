@@ -7,13 +7,14 @@ namespace BankManager.Models {
             if (Accounts.Count == 0) {
                 return "0000001";
             }
-            Accounts.Sort();
-            string lastAccountNumber = Accounts[^1].AccountNumber;
-            int lastAccountNumberParsed = int.Parse(lastAccountNumber);
 
-            lastAccountNumberParsed++;
+            // Getting the last account number generated, and parsing to int to increment and returning as string.
+            string lastAccountNumber = Accounts.Last().AccountNumber;
+            int lastAccountNumberIntParsed = int.Parse(lastAccountNumber);
 
-            return lastAccountNumberParsed.ToString("D7");
+            lastAccountNumberIntParsed++;
+
+            return lastAccountNumberIntParsed.ToString("D7");
         }
 
         public bool AlreadyHasAccount(string documentNumber) {
